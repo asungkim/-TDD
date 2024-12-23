@@ -1,12 +1,35 @@
 public class Calc {
     public static int run(String s) {
-        if (s.equals("3 + 5")) return 8;
-        else if (s.equals("(3 + 5)")) return 8;
-        else if (s.equals("(3 + 5) * 5")) return 40;
-        else if (s.equals("((3 + 5) * 5 + -10)")) return 30;
-        else if (s.equals("((3 + 5) * 5 + -10) * 10")) return 300;
-        else if (s.equals("((3 + 5) * 5 + -10) * 10 / 5")) return 60;
-        else return 0;
+
+        // 3 + 5 -> 3+5
+        s=s.replace(" ","");
+        return execute(s);
+    }
+
+    private static int execute(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            char c=s.charAt(i);
+            if (c=='+'||c=='-'||c=='*'||c=='/') {
+                int left=Integer.parseInt(s.substring(0,i));
+                int right=Integer.parseInt(s.substring(i+1));
+                return calculate(left,right,c);
+            }
+        }
+
+        return Integer.parseInt(s);
+    }
+
+    private static int calculate(int left, int right, char operator) {
+        int an=0;
+        switch (operator) {
+            case '+': an=left+right; break;
+            case '-': an=left-right; break;
+            case '*': an=left*right; break;
+            case '/': an=left/right; break;
+            default: break;
+        }
+
+        return an;
     }
 
 }
