@@ -46,6 +46,7 @@ public class Calc {
             }
         }
 
+
         return minIdx;
     }
 
