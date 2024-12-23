@@ -7,6 +7,10 @@ public class Calc {
     }
 
     private static int execute(String s) {
+        if (s.startsWith("(")&&s.endsWith(")")) {
+            return run(s.substring(1,s.length()-1));
+        }
+
         for (int i = 0; i < s.length(); i++) {
             char c=s.charAt(i);
             if (c=='+'||c=='-'||c=='*'||c=='/') {
